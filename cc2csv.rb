@@ -15,7 +15,8 @@ def parse_xmls dir
       xmldoc = Document.new(File.new(file))
       result = []
       @@benchmarks.each { |k, v|
-        result << XPath.first(xmldoc, v).value()
+         node = XPath.first(xmldoc, v)
+         result << XPath.first(xmldoc, v) == nil? "" : node.value()
       }
       @@results << result
     end
